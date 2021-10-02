@@ -28,19 +28,9 @@ get_reverse(X, Y) :-
 	reverse(A, B),
 	digits_number(B, Y).
 
-charles(Answer) :-
-	Counter = counter(0),
-	between(1, 10000, X),
-	is_lychrel(X),
-
-	arg(1, Counter, Temp),
-	F is Temp + 1,
-
-	nb_setarg(1, Counter, F),
-
-	write(F), nl,
-	X =:= 10000,
-	F = Answer.
+charles(N) :-
+  findall(_, (between(1,10000,X), is_lychrel(X)), Xs),
+  length(Xs, N).
 
 is_lychrel(Number) :-
 	Check = counter(0),
